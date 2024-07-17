@@ -20,6 +20,7 @@
     $bg-gray-variant-1: #E9E9E9;
     $bg-gray-variant-2: #F4F4F4;
     $bg-white: #fff;
+    $bg-black: #000;
 
     $bg-purple: #A445ED;
     $bg-red: #FF5252;
@@ -40,6 +41,8 @@
     $font-size-body-small: 14px;
 
     // font color
+    $font-color-black: #000;
+    $font-color-white: $bg-white;
     $font-color-purple: $bg-purple;
     $font-color-gray: $bg-gray;
 // }
@@ -49,6 +52,8 @@ body {
     height: 100%;
 
     padding: 1rem 0;
+    color: $font-color-white;
+    background: $bg-black;
 
     font-family: $font-sans-serif;
 
@@ -62,6 +67,6 @@ app-root {
 
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
 
 }
