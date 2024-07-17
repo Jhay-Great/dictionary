@@ -34,6 +34,37 @@
     }
 }
 
+.menu_popup {
+    width: 183px;
+    height: fit-content;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: none;
+    border-radius: 1rem;
+    background: $bg-dark-variant-1;
+    box-shadow: 0 0 15px 5px $bg-purple;
+    text-transform: capitalize;
+
+    position: absolute;
+    top: 60px;
+    right: 115px;
+    top: 8%;
+    right: 28%;
+
+    p {
+        font-weight: bold;
+        font-size: $font-size-body-medium;
+        padding: .5rem 0;
+
+        &:hover,
+        &:active {
+            color: $font-color-purple;
+        }
+    }
+}
+
 /* toggle theme - the switch - the box around the slider */
 .theme-toggle-switch {
   position: relative;
@@ -247,6 +278,21 @@ footer {
         display: flex;
         align-items: center;
         gap: 8px;
+    }
+}
+
+button {
+    background-color: $bg-transparent;
+    cursor: pointer;
+    border: none;
+    width: fit-content;
+    height: fit-content;
+}
+
+
+@media screen and (min-width: 780px) {
+    .menu_popup {
+        top: 9%;
     }
 }
 

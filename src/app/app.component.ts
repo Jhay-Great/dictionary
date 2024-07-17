@@ -10,4 +10,9 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'dictionary_application';
+  dropDownIsActive:boolean = false;
+
+  openMenu () {
+    return this.dropDownIsActive = !this.dropDownIsActive;
+  }
 }
