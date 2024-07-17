@@ -9,7 +9,7 @@
     box-sizing: border-box;
 }
 
-:root {
+// :root {
     // colors
     $bg-dark: #050505;
     $bg-dark-variant-1: #1F1F1F;
@@ -24,9 +24,11 @@
     $bg-purple: #A445ED;
     $bg-red: #FF5252;
 
+    $bg-transparent: transparent;
+
     // font types
     $font-sans-serif: "Inter", sans-serif;
-    $font-sans-serif: "Lora", serif;
+    $font-lora: "Lora", serif;
     $font-inconsolata: "Inconsolata", monospace;
 
     // font sizes
@@ -36,5 +38,24 @@
 
     $font-size-body-medium: 18px;
     $font-size-body-small: 14px;
+
+    // font color
+    $font-color: $bg-purple;
+    $font-color-gray: $bg-gray;
+// }
+
+body {
+    width: 100%;
+    height: 100%;
+
+    font-family: $font-sans-serif;
+
+    display: flex;
+    justify-content: center;
 }
 
+app-root {
+    width: min(700px, 90%);
+    height: 100%;
+
+}
