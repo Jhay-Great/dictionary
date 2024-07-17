@@ -131,7 +131,7 @@
         }
         .phonics {
             font-size: $font-size-body-medium;
-            color: $font-color;
+            color: $font-color-purple;
         }
     }
 
@@ -172,6 +172,7 @@
 .meaning {
     width: 100%;
     height: 100%;
+    margin-top: 1rem;
     
     p {
         color: $font-color-gray;
@@ -181,6 +182,7 @@
         width: 100%;
         height: 100%;
         padding: 0 1rem;
+        margin-top: 1rem;
 
         display: flex;
         flex-direction: column;
@@ -195,6 +197,50 @@
                 color: $bg-purple;
             }
         }
+    }
+    .examples {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        p {
+            margin-left: 1rem;
+        }
+    }
+}
+
+.synonyms {
+    width: 100%;
+    display: flex;
+    // justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    
+    p {
+        font-size: $font-size-body-medium;
+        color: $font-color-gray;
+    }
+    .synonyms_words {
+        display: flex;
+        gap: 10px;
+        color: $font-color-purple;
+        font-size: calc($font-size-body-medium - 2px);
+        font-weight: bold;
+    }
+}
+
+footer {
+    width: fit-content;
+    height: 42px;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    & div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 }
 

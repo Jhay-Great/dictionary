@@ -40,13 +40,15 @@
     $font-size-body-small: 14px;
 
     // font color
-    $font-color: $bg-purple;
+    $font-color-purple: $bg-purple;
     $font-color-gray: $bg-gray;
 // }
 
 body {
     width: 100%;
     height: 100%;
+
+    padding: 1rem 0;
 
     font-family: $font-sans-serif;
 
@@ -57,5 +59,9 @@ body {
 app-root {
     width: min(700px, 90%);
     height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 
 }
