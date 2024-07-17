@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './pos-meaning.component.scss'
 })
 export class PosMeaningComponent {
-
+  examples:string = false;
 }
