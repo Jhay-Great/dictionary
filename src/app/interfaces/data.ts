@@ -21,3 +21,9 @@ export interface response {
     sourceUrls: string[],
     word: string,
 }
+
+export interface error {
+    message: string,
+    resolution: string,
+    title: string,
+}
