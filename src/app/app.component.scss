@@ -326,17 +326,23 @@ footer {
     
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     gap: 8px;
     font-size: $font-size-body-small;
 
     p {
         color: $font-color-gray;
+        text-decoration: underline;
     }
 
     & div {
         display: flex;
         align-items: center;
         gap: 8px;
+
+        a {
+            text-decoration: underline;
+        }
     }
 }
 
@@ -353,6 +359,14 @@ button {
     .menu_popup {
         top: 9%;
     }
+
+    footer {
+        align-items: center;
+        flex-direction: row;
+        gap: 1rem;
+        
+    }
+
 }
 
 
