@@ -1,23 +1,23 @@
-@import '../../styles.scss';
+@import "../../styles.scss";
 
 section {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 
-    p {
-        font-size: $font-size-heading-large;
+  p {
+    font-size: $font-size-heading-large;
+  }
+
+  div {
+    p:first-child {
+      font-size: $font-size-heading-small;
+      font-weight: bold;
+      margin-top: 2rem;
     }
 
-    div {
-        p:first-child {
-            font-size: $font-size-heading-small;
-            font-weight: bold;
-            margin-top: 2rem;
-        }
-
-        p:last-child {
-            font-size: $font-size-body-medium;
-            margin-top: 2rem;
-        }
+    p:last-child {
+      font-size: $font-size-body-medium;
+      margin-top: 2rem;
     }
+  }
 }

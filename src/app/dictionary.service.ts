@@ -5,20 +5,18 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { response } from './interfaces/data';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DictionaryService {
-
   // api
-  api:string = `https://api.dictionaryapi.dev/api/v2/entries/en/`;
+  api: string = `https://api.dictionaryapi.dev/api/v2/entries/en/`;
 
   constructor(
     // private http: HttpClient,
     private http: HttpClient
-  ) { }
+  ) {}
 
-  readFromApi (keyword:string) {
+  readFromApi(keyword: string) {
     return this.http.get<response[]>(`${this.api}${keyword}`);
   }
-  
 }

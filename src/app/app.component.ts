@@ -14,35 +14,35 @@ import { response, error } from './interfaces/data';
   standalone: true,
   imports: [RouterOutlet, ErrorMessageComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  word!:response;
-  searchQuery:string = '';
-  fontType:string = 'sans-serif';
-  dropDownIsActive:boolean = false;
-  fetchResponse:boolean = false;
-  isDark:boolean = true;
-  notFound:boolean = false; 
+  word!: response;
+  searchQuery: string = '';
+  fontType: string = 'sans-serif';
+  dropDownIsActive: boolean = false;
+  fetchResponse: boolean = false;
+  isDark: boolean = true;
+  notFound: boolean = false;
   emptyField: boolean = false;
-  error!:error;
+  error!: error;
 
-  constructor (
+  constructor(
     private dictionaryService: DictionaryService,
     private applicationService: ApplicationService,
-    private detectChange: ChangeDetectorRef,
+    private detectChange: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     // this.dictionaryService.readFromApi('hello').subscribe(response=>{
     //   // console.log(response);
     //   // this.word = response;
-      
+
     // });
     this.applicationService.setTheme('dark');
   }
 
-  searchWord (event: KeyboardEvent) :void {
+  searchWord(event: KeyboardEvent): void {
     if (event.key !== 'Enter') return;
 
     const input = event.target as HTMLInputElement;
@@ -55,53 +55,48 @@ export class AppComponent implements OnInit {
       this.fetchResponse = false;
       return;
     }
-    
+
     this.searchDictionary(value);
     this.detectChange.detectChanges();
-    
-  }
-  
-  searchDictionary(word:string) {
-    this.dictionaryService.readFromApi(word).subscribe(result => {
-      // console.log(result);
-
-      this.word = result[0];
-      console.log(this.word);
-      this.fetchResponse = true;
-      this.notFound = false;
-      this.emptyField = false;
-      return;
-    }, error => {
-      
-      this.notFound = true;
-      this.error = error.error;
-      this.emptyField = false;
-      this.fetchResponse = false;
-      return;
-    })
-
   }
 
-  changeFontType (event: MouseEvent) :void {
+  searchDictionary(word: string) {
+    this.dictionaryService.readFromApi(word).subscribe(
+      (result) => {
+        // console.log(result);
+
+        this.word = result[0];
+        console.log(this.word);
+        this.fetchResponse = true;
+        this.notFound = false;
+        this.emptyField = false;
+        return;
+      },
+      (error) => {
+        this.notFound = true;
+        this.error = error.error;
+        this.emptyField = false;
+        this.fetchResponse = false;
+        return;
+      }
+    );
+  }
+
+  changeFontType(event: MouseEvent): void {
     const target = event.target as HTMLButtonElement;
     const text = target.innerText;
-    
+
     this.applicationService.setFont(text);
     this.fontType = text;
-    
   }
 
-  openMenu () {
-    return this.dropDownIsActive = !this.dropDownIsActive;
+  openMenu() {
+    return (this.dropDownIsActive = !this.dropDownIsActive);
   }
 
-  toggleDarkMode (isDark:boolean) {
-    
-    this.isDark = isDark
-    const mode = isDark ? 'dark' : 'light'
+  toggleDarkMode(isDark: boolean) {
+    this.isDark = isDark;
+    const mode = isDark ? 'dark' : 'light';
     this.applicationService.setTheme(mode);
-
-    
   }
-  
 }

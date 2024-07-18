@@ -6,10 +6,8 @@ import { error } from '../interfaces/data';
   standalone: true,
   imports: [],
   templateUrl: './error-message.component.html',
-  styleUrl: './error-message.component.scss'
+  styleUrl: './error-message.component.scss',
 })
 export class ErrorMessageComponent {
-
-  @Input () error!: error;
-
+  @Input() error!: error;
 }
