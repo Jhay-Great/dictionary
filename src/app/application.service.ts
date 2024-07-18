@@ -26,7 +26,6 @@ export class ApplicationService {
       default:
         value = 'sans-serif';
     }
-    console.log(value);
     document.documentElement.style.setProperty('--font-family', value);
 
     }
