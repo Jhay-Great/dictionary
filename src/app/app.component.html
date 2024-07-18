@@ -52,10 +52,10 @@
   <section class="searched-word">
     <div class="word_phonics">
       <p class="word">
-        keyboard
+        {{word.word}}
       </p>
       <p class="phonics">
-        /ˈkiːbɔːd/
+        {{word.phonetics[0].text}}
       </p>
     </div>
     <button class="sound">
@@ -65,7 +65,51 @@
   </section>
   
   <!-- part_of_speech -->
-  <section class="pos_meaning">
+   @for (meaning of word.meanings; track $index) {
+     <section class="pos_meaning">
+       <section class="part_of_speech">
+         <p>{{meaning.partOfSpeech}}</p>
+         <hr>
+       </section>
+       
+       <section class="meaning">
+         <p>Meaning</p>
+         <ul>
+          @for (definition of meaning.definitions; track $index) {
+            <li>
+              {{ definition.definition }}
+            </li>
+          }
+         </ul>
+       </section>
+     
+     </section>
+     
+     <!-- synonyms -->
+     @if (meaning.synonyms.length > 0) {
+       <section class="synonyms">
+         <p>Synonyms</p>
+         <div class="synonyms_words">
+          @for (synonyms of meaning.synonyms; track $index) {
+            <p>{{synonyms}}</p>
+          }
+          </div>
+        </section>
+      }
+      <!-- antonyms -->
+      @if (meaning.antonyms.length > 0) {
+        <section class="synonyms">
+          <p>Antonyms</p>
+          <div class="synonyms_words">
+           @for (antonyms of meaning.antonyms; track $index) {
+             <p>{{ antonyms }}</p>
+           }
+           </div>
+         </section>
+       }
+       
+   }
+  <!-- <section class="pos_meaning">
     <section class="part_of_speech">
       <p>noun</p>
       <hr>
@@ -86,18 +130,18 @@
       </ul>
     </section>
   
-  </section>
+  </section> -->
   
   <!-- synonyms -->
-  <section class="synonyms">
+  <!-- <section class="synonyms">
     <p>Synonyms</p>
     <div class="synonyms_words">
       <p>electronic</p>
       <p>keyboard</p>
     </div>
-  </section>
+  </section> -->
   
-  <section class="pos_meaning">
+  <!-- <section class="pos_meaning">
     <section class="part_of_speech">
       <p>verb</p>
       <hr>
@@ -115,7 +159,7 @@
       </div>
     </section>
     
-  </section>
+  </section> -->
   
   <hr>
   

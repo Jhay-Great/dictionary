@@ -5,7 +5,11 @@ export interface response {
     }
     meanings: {
         antonyms: [],
-        definitions: {}[],
+        definitions: {
+            antonyms: string[],
+            definition: string,
+            synonyms: string[]
+        }[],
         partOfSpeech: string,
         synonyms: string[]
     }[],
