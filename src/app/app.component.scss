@@ -39,6 +39,11 @@
             display: flex;
             gap: 10px;
             align-items: center;
+
+            svg path {
+                stroke: $toggle-active;
+                stroke: var(--toggle-active);
+            }
         }
     }
 }
@@ -164,9 +169,11 @@
         border-radius: 16px;
         border: 2px solid $bg-transparent;
         outline: none;
-        background-color: $bg-transparent;
+        // background-color: $bg-transparent;
+        background-color: var(--toggle-input-field);
         font-size: $font-size-heading-small;
         font-weight: bold;
+        color: var(--text-color);
     }
     
     input:active, input:focus, input:hover {
@@ -294,7 +301,6 @@
 .synonyms {
     width: 100%;
     display: flex;
-    // justify-content: space-between;
     align-items: center;
     gap: 20px;
     

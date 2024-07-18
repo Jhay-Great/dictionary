@@ -53,14 +53,41 @@ $font-color-gray: $bg-gray;
 // dark mode
 
 $background: $bg-black;
-$font-white: $font-color-white;
-$toggle-active: $bg-purple;
+$font-color: $font-color-white;
+// $toggle-active: $bg-purple;
+$toggle-active: #A445ED;
+$input-field: $bg-dark-variant-1;
+
+
+
+:root {
+    // dark mode
+    $background: $bg-black;
+    $font-color: $font-color-white;
+    // $toggle-active: $bg-purple;
+    $toggle-active: #A445ED;
+    $input-field: $bg-dark-variant-1;
+
+    --background-color: #{$background};
+    --text-color: #{$font-color};
+    --toggle-active: #($toggle-active); /*further research*/
+    --toggle-active: #A445ED;
+    --toggle-input-field: #1F1F1F;
+}
 
 // light mode
 [data-theme='light'] {
     $background: $bg-white;
-    $font-white: $bg-black;
+    $font-color: $font-color-black;
     $toggle-active: $bg-gray;
+    $input-field: $bg-gray-variant-2;
+
+    --background-color: #{$background};
+    --text-color: #{$font-color};
+    --toggle-active: #($toggle-active); /*not working find out why */
+    --toggle-active: #757575;
+    --toggle-input-field: #($bg-gray-variant-2);
+    --toggle-input-field: #F4F4F4;
 }
 
 body {
@@ -69,9 +96,11 @@ body {
 
     padding: 1rem 0;
     // color: $font-color-white;
-    color: $font-white;
+    color: $font-color;
+    color: var(--text-color);
     // background: $bg-black;
-    background: $background;
+    // background: $background;
+    background: var(--background-color);
 
     // font-family: $font-sans-serif;
     font-family: $default-font;
