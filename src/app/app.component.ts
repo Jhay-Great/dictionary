@@ -51,6 +51,8 @@ export class AppComponent implements OnInit {
     if (value === '') {
       console.log(value, 'empty field');
       this.emptyField = true;
+      this.notFound = false;
+      this.fetchResponse = false;
       return;
     }
     
@@ -67,10 +69,10 @@ export class AppComponent implements OnInit {
       console.log(this.word);
       this.fetchResponse = true;
       this.notFound = false;
+      this.emptyField = false;
       return;
     }, error => {
-      console.log(error.error)
-      console.log('not found');
+      
       this.notFound = true;
       this.error = error.error;
       this.emptyField = false;
