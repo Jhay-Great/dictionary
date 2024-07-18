@@ -305,9 +305,12 @@
     .synonyms_words {
         display: flex;
         gap: 10px;
+        flex-wrap: wrap;
+
         color: $font-color-purple;
         font-size: calc($font-size-body-medium - 2px);
         font-weight: bold;
+        
     }
 }
 

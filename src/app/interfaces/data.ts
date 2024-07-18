@@ -11,7 +11,8 @@ export interface response {
             synonyms: string[]
         }[],
         partOfSpeech: string,
-        synonyms: string[]
+        synonyms: string[],
+        
     }[],
     phonetics: {
         audio: string,
