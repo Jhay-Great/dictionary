@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 // local imports
@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   searchQuery:string = '';
   fontType:string = 'sans-serif';
   dropDownIsActive:boolean = false;
+  fetchResponse:boolean = false;
   isDark:boolean = true;
   notFound:boolean = false; 
   emptyField: boolean = false;
@@ -29,6 +30,7 @@ export class AppComponent implements OnInit {
   constructor (
     private dictionaryService: DictionaryService,
     private applicationService: ApplicationService,
+    private detectChange: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +55,7 @@ export class AppComponent implements OnInit {
     }
     
     this.searchDictionary(value);
+    this.detectChange.detectChanges();
     
   }
   
@@ -62,12 +65,16 @@ export class AppComponent implements OnInit {
 
       this.word = result[0];
       console.log(this.word);
+      this.fetchResponse = true;
+      this.notFound = false;
       return;
     }, error => {
       console.log(error.error)
       console.log('not found');
       this.notFound = true;
       this.error = error.error;
+      this.emptyField = false;
+      this.fetchResponse = false;
       return;
     })
 
