@@ -315,9 +315,18 @@
     gap: 10px;
     flex-wrap: wrap;
 
-    color: $font-color-purple;
-    font-size: calc($font-size-body-medium - 2px);
-    font-weight: bold;
+    p {
+        color: $font-color-purple;
+        font-size: calc($font-size-body-medium - 2px);
+        font-weight: bold;
+
+        &:hover, 
+        &:active {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+
   }
 }
 

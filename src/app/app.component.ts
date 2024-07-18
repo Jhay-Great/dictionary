@@ -63,7 +63,7 @@ export class AppComponent implements OnInit {
   searchDictionary(word: string) {
     this.dictionaryService.readFromApi(word).subscribe(
       (result) => {
-        // console.log(result);
+        console.log(result);
 
         this.word = result[0];
         console.log(this.word);
