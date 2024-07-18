@@ -58,6 +58,7 @@
     border: none;
     border-radius: 1rem;
     background: $bg-dark-variant-1;
+    background: var(--background-color);
     box-shadow: 0 0 15px 5px $bg-purple;
     text-transform: capitalize;
 
@@ -72,6 +73,7 @@
         font-weight: bold;
         font-size: $font-size-body-medium;
         padding: .5rem 0;
+        color: var(--text-color);
 
         &:hover,
         &:active {
@@ -218,6 +220,10 @@
         background-color: $bg-transparent;
         border: none;
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
 
         & > * {
             width: 100%;
@@ -234,6 +240,7 @@
         }
         &:hover circle {
             fill: $bg-purple;
+            opacity: 1;
         }
     }
 }

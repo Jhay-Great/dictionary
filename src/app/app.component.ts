@@ -76,26 +76,29 @@ export class AppComponent implements OnInit {
     const target = event.target as HTMLButtonElement;
     const text = target.innerText;
     
-    if (text === 'sans-serif') {
-      document.body.style.setProperty('font-family', '"Inter", sans-serif');
-      console.log('in inter')
-      return;
-    }
-    if (text === 'serif') {
-      document.body.style.setProperty('font-family', '"Lora", serif');
-      console.log('in lora')
-      return;
-    }
-    if (text === 'mono') {
-      document.body.style.setProperty('font-family', '"Inconsolata", monospace');
-      console.log('in mono')
-      return;
-    }
-    return;
+    // if (text === 'sans-serif') {
+    //   document.body.style.setProperty('font-family', '"Inter", sans-serif');
+    //   console.log('in inter')
+    //   return;
+    // }
+    // if (text === 'serif') {
+    //   document.body.style.setProperty('font-family', '"Lora", serif');
+    //   console.log('in lora')
+    //   return;
+    // }
+    // if (text === 'mono') {
+    //   document.body.style.setProperty('font-family', '"Inconsolata", monospace');
+    //   console.log('in mono')
+    //   return;
+    // }
+    // return;
 
     console.log('clicked...')
     // console.log('clicked occurred...')
     // document.documentElement.style.setProperty('--app-font-family', font);
+
+    this.applicationService.setFont(text);
+    
   }
 
   openMenu () {
