@@ -22,8 +22,8 @@ export class AppComponent implements OnInit {
   audioSRC!:string[];
   fontType: string = 'sans-serif';
   dropDownIsActive: boolean = false;
-  fetchResponse: boolean = false;
   isDark: boolean = true;
+  fetchResponse: boolean = false;
   notFound: boolean = false;
   emptyField: boolean = false;
   loadingState:boolean = false;
@@ -46,6 +46,14 @@ export class AppComponent implements OnInit {
     this.applicationService.setTheme('dark');
   }
 
+  // properly build this functionality
+  handlingState (state=false) :void { 
+    this.emptyField = !this.emptyField;
+    this.fetchResponse = !this.fetchResponse;
+    this.notFound = !this.notFound;
+    this.loadingState = !this.loadingState;
+  }
+
   searchWord(event: KeyboardEvent): void {
     if (event.key !== 'Enter') return;
 
@@ -58,6 +66,7 @@ export class AppComponent implements OnInit {
     
     if (value === '') {
       console.log(value, 'empty field');
+      // this.handlingState(); // functionality still in under construction
       this.emptyField = true;
       this.notFound = false;
       this.fetchResponse = false;
@@ -85,8 +94,8 @@ export class AppComponent implements OnInit {
         return;
       },
       (error) => {
-        this.notFound = true;
         this.error = error.error;
+        this.notFound = true;
         this.emptyField = false;
         this.fetchResponse = false;
         this.loadingState = false;
@@ -97,6 +106,8 @@ export class AppComponent implements OnInit {
 
   findSelectedWord (word: string) {
     console.log(word);
+    this.loadingState = true;
+    this.fetchResponse = false;
     this.searchDictionary(word);
   }
 
