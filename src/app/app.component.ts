@@ -18,6 +18,7 @@ import { response, error } from './interfaces/data';
 })
 export class AppComponent implements OnInit {
   searchQuery: string = '';
+  audioSRC!:string[];
   fontType: string = 'sans-serif';
   dropDownIsActive: boolean = false;
   fetchResponse: boolean = false;
@@ -72,6 +73,7 @@ export class AppComponent implements OnInit {
     this.dictionaryService.readFromApi(word).subscribe(
       (result) => {
         console.log(result);
+        // console.log('audio src: ', this.audioSRC);
 
         this.word = result;
         console.log(this.word);
@@ -108,5 +110,11 @@ export class AppComponent implements OnInit {
     this.isDark = isDark;
     const mode = isDark ? 'dark' : 'light';
     this.applicationService.setTheme(mode);
+  }
+
+  playPhoneticSound () {
+    console.log('clicked, playing sound...');
+    const audioPlayer = document.querySelector('.audioPlayer') as HTMLAudioElement;
+    audioPlayer.play();
   }
 }
