@@ -79,6 +79,7 @@
     value=""
     (keypress)="searchWord($event)"
     #inputValue
+    [ngClass]="{'error-empty': emptyField}"
   />
   <img
     src="../assets/images/icon-search.svg"
@@ -212,7 +213,9 @@
 }
 
 @if (loadingState) {
-  <p>loading...</p>
+  <div class="loading">
+    <p>loading...</p>
+  </div>
 }
 
 <router-outlet />

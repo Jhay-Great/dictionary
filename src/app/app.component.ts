@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 // local imports
@@ -12,7 +13,7 @@ import { response, error } from './interfaces/data';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ErrorMessageComponent],
+  imports: [RouterOutlet, NgClass, ErrorMessageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -113,7 +114,6 @@ export class AppComponent implements OnInit {
   }
 
   playPhoneticSound () {
-    console.log('clicked, playing sound...');
     const audioPlayer = document.querySelector('.audioPlayer') as HTMLAudioElement;
     audioPlayer.play();
   }
