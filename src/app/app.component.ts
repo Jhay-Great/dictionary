@@ -17,7 +17,6 @@ import { response, error } from './interfaces/data';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  word!: response[];
   searchQuery: string = '';
   fontType: string = 'sans-serif';
   dropDownIsActive: boolean = false;
@@ -25,7 +24,10 @@ export class AppComponent implements OnInit {
   isDark: boolean = true;
   notFound: boolean = false;
   emptyField: boolean = false;
+  loadingState:boolean = false;
+  timeout:number[] = [1, 3, 5];
   error!: error;
+  word!: response[];
 
   constructor(
     private dictionaryService: DictionaryService,
@@ -48,13 +50,19 @@ export class AppComponent implements OnInit {
     const input = event.target as HTMLInputElement;
     const value = input.value;
 
+    this.emptyField = false;
+    this.fetchResponse = false;
+    this.notFound = false;
+    
     if (value === '') {
       console.log(value, 'empty field');
       this.emptyField = true;
       this.notFound = false;
       this.fetchResponse = false;
+      this.loadingState = false;
       return;
     }
+    this.loadingState = true;
 
     this.searchDictionary(value);
     this.detectChange.detectChanges();
@@ -67,6 +75,7 @@ export class AppComponent implements OnInit {
 
         this.word = result;
         console.log(this.word);
+        this.loadingState = false;
         this.fetchResponse = true;
         this.notFound = false;
         this.emptyField = false;
@@ -77,6 +86,7 @@ export class AppComponent implements OnInit {
         this.error = error.error;
         this.emptyField = false;
         this.fetchResponse = false;
+        this.loadingState = false;
         return;
       }
     );
