@@ -95,6 +95,11 @@ export class AppComponent implements OnInit {
     );
   }
 
+  findSelectedWord (word: string) {
+    console.log(word);
+    this.searchDictionary(word);
+  }
+
   changeFontType(event: MouseEvent): void {
     const target = event.target as HTMLButtonElement;
     const text = target.innerText;

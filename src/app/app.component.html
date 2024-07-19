@@ -171,7 +171,7 @@
       <p>Synonyms</p>
       <div class="synonyms_words">
         @for (synonyms of meaning.synonyms; track $index) {
-        <p>{{ synonyms }}</p>
+        <p (click)="findSelectedWord(synonyms)">{{ synonyms }}</p>
         }
       </div>
     </section>
@@ -182,7 +182,7 @@
       <p>Antonyms</p>
       <div class="synonyms_words">
         @for (antonyms of meaning.antonyms; track $index) {
-        <p>{{ antonyms }}</p>
+        <p (click)="findSelectedWord(antonyms)">{{ antonyms }}</p>
         }
       </div>
     </section>
