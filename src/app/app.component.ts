@@ -17,7 +17,7 @@ import { response, error } from './interfaces/data';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  word!: response;
+  word!: response[];
   searchQuery: string = '';
   fontType: string = 'sans-serif';
   dropDownIsActive: boolean = false;
@@ -65,7 +65,7 @@ export class AppComponent implements OnInit {
       (result) => {
         console.log(result);
 
-        this.word = result[0];
+        this.word = result;
         console.log(this.word);
         this.fetchResponse = true;
         this.notFound = false;
