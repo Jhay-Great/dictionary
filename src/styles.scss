@@ -67,6 +67,9 @@ $input-field: $bg-dark-variant-1;
   --toggle-active: #{$toggle-active}; /*further research*/
   --toggle-input-field: #{$input-field};
 
+  // gradient
+  --gradient-alt: 0 0 15px 5px #{$bg-purple};
+
   --font-family: #{$font-sans-serif};
 }
 
@@ -83,6 +86,11 @@ $input-field: $bg-dark-variant-1;
   --toggle-active: #757575;
   --toggle-input-field: #($bg-gray-variant-2);
   --toggle-input-field: #f4f4f4;
+
+  // gradient
+  --gradient-alt: 0 0 15px 5px #a445ed1c;
+
+  
 }
 
 body {
