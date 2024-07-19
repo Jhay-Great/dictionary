@@ -91,94 +91,125 @@
 
 <!-- main dictionary content -->
 @if (fetchResponse) {
-<!-- searched work / displayed word -->
-<section class="searched-word">
-  <div class="word_phonics">
-    <p class="word">
-      {{ word.word }}
-    </p>
-    <p class="phonics">
-      {{ word.phonetics[0].text }}
-    </p>
-  </div>
-  <button class="sound">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="75"
-      height="75"
-      viewBox="0 0 75 75"
-    >
-      <g fill="#A445ED" fill-rule="evenodd">
-        <circle cx="37.5" cy="37.5" r="37.5" opacity=".25" />
-        <path d="M29 27v21l21-10.5z" />
-      </g>
-    </svg>
-    <!-- <img src="../assets/images/icon-play.svg" alt="play search word svg icon"> -->
-  </button>
-</section>
+  @for (response of word; track $index) {
+    <!-- searched work / displayed word -->
+    <section class="searched-word">
+      <div class="word_phonics">
+        <p class="word">
+          <!-- {{ word.word }} -->
+          {{ response.word }}
+        </p>
+        <p class="phonics">
+          @for (phonic of response.phonetics; track $index) {
+            {{ phonic.text }}
 
-<!-- part_of_speech -->
-@for (meaning of word.meanings; track $index) { @if (meaning.partOfSpeech) {
-<section class="pos_meaning">
-  <section class="part_of_speech">
-    <p>{{ meaning.partOfSpeech }}</p>
-    <hr />
-  </section>
+          }
+          <!-- {{ word.phonetics[0].text }} -->
+        </p>
+      </div>
+      @for (phonicSound of response.phonetics; track $index) {
+        <button class="sound">
+          <audio [src]="phonicSound.audio"></audio>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="75"
+            height="75"
+            viewBox="0 0 75 75"
+          >
+            <g fill="#A445ED" fill-rule="evenodd">
+              <circle cx="37.5" cy="37.5" r="37.5" opacity=".25" />
+              <path d="M29 27v21l21-10.5z" />
+            </g>
+          </svg>
+          <!-- <img src="../assets/images/icon-play.svg" alt="play search word svg icon"> -->
+        </button>
 
-  <section class="meaning">
-    <p>Meaning</p>
-    <ul>
-      @for (definition of meaning.definitions; track $index) {
-      <li>
-        {{ definition.definition }}
-      </li>
       }
-    </ul>
-  </section>
-</section>
+    </section>
+    
+    <!-- part_of_speech -->
+    @for (meaning of response.meanings; track $index) { 
+      @if (meaning.partOfSpeech) {
+    <section class="pos_meaning">
+      <section class="part_of_speech">
+        <p>{{ meaning.partOfSpeech }}</p>
+        <hr />
+      </section>
+    
+      <section class="meaning">
+        <p>Meaning</p>
+        <ul>
+          @for (definition of meaning.definitions; track $index) {
+            <div class="definition_example">
+              <li>
+                {{ definition.definition }}
+              </li>
+              @if (definition.example) {
+                <p> {{definition.example}} </p>
+              }
+              @if (definition.antonyms) {
+                <p> {{definition.antonyms}} </p>
+              }
+              @if (definition.synonyms) {
+                <p> {{definition.synonyms}} </p>
+              }
+
+            </div>
+          }
+        </ul>
+      </section>
+    </section>
+    }
+    
+    <!-- synonyms -->
+    @if (meaning.synonyms.length > 0) {
+    <section class="synonyms">
+      <p>Synonyms</p>
+      <div class="synonyms_words">
+        @for (synonyms of meaning.synonyms; track $index) {
+        <p>{{ synonyms }}</p>
+        }
+      </div>
+    </section>
+    }
+    <!-- antonyms -->
+    @if (meaning.antonyms.length > 0) {
+    <section class="synonyms">
+      <p>Antonyms</p>
+      <div class="synonyms_words">
+        @for (antonyms of meaning.antonyms; track $index) {
+        <p>{{ antonyms }}</p>
+        }
+      </div>
+    </section>
+    } }
+    
+    <hr />
+    
+    <footer>
+      <p>Source</p>
+      <div>
+        @for (sourceUrl of response.sourceUrls; track $index) {
+        <a> {{ sourceUrl }} </a>
+        }
+        <img src="../assets/images/icon-new-window.svg" alt="new window svg icon" />
+      </div>
+      <!-- <div>
+          <a>https://en.wiktionary.org/wiki/keyboard</a>
+          <img src="../assets/images/icon-new-window.svg" alt="new window svg icon">
+        </div> -->
+    </footer>
+
+  }
 }
 
-<!-- synonyms -->
-@if (meaning.synonyms.length > 0) {
-<section class="synonyms">
-  <p>Synonyms</p>
-  <div class="synonyms_words">
-    @for (synonyms of meaning.synonyms; track $index) {
-    <p>{{ synonyms }}</p>
-    }
-  </div>
-</section>
-}
-<!-- antonyms -->
-@if (meaning.antonyms.length > 0) {
-<section class="synonyms">
-  <p>Antonyms</p>
-  <div class="synonyms_words">
-    @for (antonyms of meaning.antonyms; track $index) {
-    <p>{{ antonyms }}</p>
-    }
-  </div>
-</section>
-} }
 
-<hr />
-
-<footer>
-  <p>Source</p>
-  <div>
-    @for (sourceUrl of word.sourceUrls; track $index) {
-    <a> {{ sourceUrl }} </a>
-    }
-    <img src="../assets/images/icon-new-window.svg" alt="new window svg icon" />
-  </div>
-  <!-- <div>
-      <a>https://en.wiktionary.org/wiki/keyboard</a>
-      <img src="../assets/images/icon-new-window.svg" alt="new window svg icon">
-    </div> -->
-</footer>
-
-} @if (notFound) {
+@if (notFound) {
 <app-error-message [error]="error" />
+}
+
+@if (loadingState) {
+  <p>loading...</p>
 }
 
 <router-outlet />

@@ -8,6 +8,7 @@ export interface response {
     definitions: {
       antonyms: string[];
       definition: string;
+      example: string;
       synonyms: string[];
     }[];
     partOfSpeech: string;
