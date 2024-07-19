@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 // local imports
@@ -12,7 +13,7 @@ import { response, error } from './interfaces/data';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ErrorMessageComponent],
+  imports: [RouterOutlet, NgClass, ErrorMessageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -21,8 +22,8 @@ export class AppComponent implements OnInit {
   audioSRC!:string[];
   fontType: string = 'sans-serif';
   dropDownIsActive: boolean = false;
-  fetchResponse: boolean = false;
   isDark: boolean = true;
+  fetchResponse: boolean = false;
   notFound: boolean = false;
   emptyField: boolean = false;
   loadingState:boolean = false;
@@ -45,6 +46,14 @@ export class AppComponent implements OnInit {
     this.applicationService.setTheme('dark');
   }
 
+  // properly build this functionality
+  handlingState (state=false) :void { 
+    this.emptyField = !this.emptyField;
+    this.fetchResponse = !this.fetchResponse;
+    this.notFound = !this.notFound;
+    this.loadingState = !this.loadingState;
+  }
+
   searchWord(event: KeyboardEvent): void {
     if (event.key !== 'Enter') return;
 
@@ -57,6 +66,7 @@ export class AppComponent implements OnInit {
     
     if (value === '') {
       console.log(value, 'empty field');
+      // this.handlingState(); // functionality still in under construction
       this.emptyField = true;
       this.notFound = false;
       this.fetchResponse = false;
@@ -84,14 +94,21 @@ export class AppComponent implements OnInit {
         return;
       },
       (error) => {
-        this.notFound = true;
         this.error = error.error;
+        this.notFound = true;
         this.emptyField = false;
         this.fetchResponse = false;
         this.loadingState = false;
         return;
       }
     );
+  }
+
+  findSelectedWord (word: string) {
+    console.log(word);
+    this.loadingState = true;
+    this.fetchResponse = false;
+    this.searchDictionary(word);
   }
 
   changeFontType(event: MouseEvent): void {
@@ -113,7 +130,6 @@ export class AppComponent implements OnInit {
   }
 
   playPhoneticSound () {
-    console.log('clicked, playing sound...');
     const audioPlayer = document.querySelector('.audioPlayer') as HTMLAudioElement;
     audioPlayer.play();
   }
